@@ -1,2 +1,3 @@
 # bestbuy
-A tool to compare unit price
+
+Android app to compare unit price.
