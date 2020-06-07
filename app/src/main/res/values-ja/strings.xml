@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Best Buy</string>
+    <string name="price">価格</string>
+    <string name="volume">容量</string>
+    <string name="number">数量</string>
+    <string name="unitPrice">単価</string>
+</resources>

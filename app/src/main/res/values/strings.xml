@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Best Buy</string>
+    <string name="price">Price</string>
+    <string name="volume">Volume</string>
+    <string name="number">Number</string>
+    <string name="unitPrice">Unit Price</string>
+</resources>
