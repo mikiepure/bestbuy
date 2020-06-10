@@ -42,20 +42,33 @@ class CalculatorTest {
     }
 
     @Test
-    fun unitPriceStr() {
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "1", "1"), "100.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "", ""), "100.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "2", "1"), "50.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "2", ""), "50.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "1", "2"), "50.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "", "2"), "50.00")
-        Assert.assertEquals(Calculator.getUnitPriceStr("", "", ""), "")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "0", ""), "")
-        Assert.assertEquals(Calculator.getUnitPriceStr("100", "", "0"), "")
+    fun getUnitPriceStr() {
+        val method = Calculator::class.java.getDeclaredMethod(
+            "getUnitPriceStr",
+            String::class.java, String::class.java, String::class.java
+        )
+        method.isAccessible = true
+
+        Assert.assertEquals(method.invoke(null, "100", "1", "1"), "100.00")
+        Assert.assertEquals(method.invoke(null, "100", "", ""), "100.00")
+        Assert.assertEquals(method.invoke(null, "100", "2", "1"), "50.00")
+        Assert.assertEquals(method.invoke(null, "100", "2", ""), "50.00")
+        Assert.assertEquals(method.invoke(null, "100", "1", "2"), "50.00")
+        Assert.assertEquals(method.invoke(null, "100", "", "2"), "50.00")
+
+        Assert.assertEquals(method.invoke(null, "", "", ""), "")
+        Assert.assertEquals(method.invoke(null, "100", "0", "1"), "")
+        Assert.assertEquals(method.invoke(null, "100", "1", "0"), "")
     }
 
     @Test
     fun calcUnitPrice() {
+        val method = Calculator::class.java.getDeclaredMethod(
+            "calcUnitPrice",
+            BigDecimal::class.java, BigDecimal::class.java, BigDecimal::class.java
+        )
+        method.isAccessible = true
+
         val val0 = BigDecimal.ZERO
         val val1 = BigDecimal.ONE
         val val2 = BigDecimal.valueOf(2)
@@ -63,12 +76,12 @@ class CalculatorTest {
         val val50 = BigDecimal.valueOf(50)
         val val100 = BigDecimal.valueOf(100)
 
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val1, val1), val100.setScale(2))
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val2, val1), val50.setScale(2))
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val1, val2), val50.setScale(2))
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val2, val2), val25.setScale(2))
-        Assert.assertEquals(Calculator.calcUnitPrice(val0, val1, val1), null)
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val0, val1), null)
-        Assert.assertEquals(Calculator.calcUnitPrice(val100, val1, val0), null)
+        Assert.assertEquals(method.invoke(null, val100, val1, val1), val100.setScale(2))
+        Assert.assertEquals(method.invoke(null, val100, val2, val1), val50.setScale(2))
+        Assert.assertEquals(method.invoke(null, val100, val1, val2), val50.setScale(2))
+        Assert.assertEquals(method.invoke(null, val100, val2, val2), val25.setScale(2))
+        Assert.assertEquals(method.invoke(null, val0, val1, val1), null)
+        Assert.assertEquals(method.invoke(null, val100, val0, val1), null)
+        Assert.assertEquals(method.invoke(null, val100, val1, val0), null)
     }
 }
