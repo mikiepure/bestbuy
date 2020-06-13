@@ -79,6 +79,12 @@
                     android:hint="@string/unitPrice" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Button
+                android:id="@+id/buttonClear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clear" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -148,6 +154,12 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/unitPrice" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/buttonClear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clear" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

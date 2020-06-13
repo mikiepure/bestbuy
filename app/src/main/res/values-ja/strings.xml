@@ -4,4 +4,5 @@
     <string name="volume">容量</string>
     <string name="number">数量</string>
     <string name="unitPrice">単価</string>
+    <string name="clear">クリア</string>
 </resources>

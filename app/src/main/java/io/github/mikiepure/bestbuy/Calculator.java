@@ -2,13 +2,14 @@ package io.github.mikiepure.bestbuy;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-final class Calculator implements TextWatcher {
+final class Calculator implements TextWatcher, View.OnClickListener {
 
   private final TextInputEditText _price;
   private final TextInputEditText _volume;
@@ -41,6 +42,13 @@ final class Calculator implements TextWatcher {
     String volumeStr = this._volume.getText().toString();
     String numberStr = this._number.getText().toString();
     this._unitPrice.setText(getUnitPriceStr(priceStr, volumeStr, numberStr));
+  }
+
+  @Override
+  public void onClick(View v) {
+    this._price.setText("");
+    this._volume.setText("");
+    this._number.setText("");
   }
 
   /**
