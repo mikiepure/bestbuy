@@ -21,7 +21,7 @@ public class Log {
    *
    * <p>The log can have optional data, which will be space separated string.
    *
-   * @param msg log message
+   * @param msg  log message
    * @param args optional data
    */
   public static void error(String msg, Object... args) {
@@ -41,7 +41,7 @@ public class Log {
    *
    * <p>The log can have optional data, which will be space separated string.
    *
-   * @param msg log message
+   * @param msg  log message
    * @param args optional data
    */
   public static void warn(String msg, Object... args) {
@@ -61,7 +61,7 @@ public class Log {
    *
    * <p>The log can have optional data, which will be space separated string.
    *
-   * @param msg log message
+   * @param msg  log message
    * @param args optional data
    */
   public static void info(String msg, Object... args) {
@@ -73,7 +73,7 @@ public class Log {
    *
    * <p>The log can have optional data, which will be space separated string.
    *
-   * @param msg log message
+   * @param msg  log message
    * @param args optional data
    */
   public static void debug(String msg, Object... args) {
@@ -85,7 +85,7 @@ public class Log {
    *
    * <p>The log can have optional data, which will be space separated string.
    *
-   * @param msg log message
+   * @param msg  log message
    * @param args optional data
    */
   public static void verbose(String msg, Object... args) {
@@ -110,7 +110,9 @@ public class Log {
   private static String getLogMsg(String msg, Object... args) {
     final String count = String.format("%02X", counter.getAndIncrement() & 0xFF);
     StringBuilder argsMsg = new StringBuilder();
-    for (Object arg : args) argsMsg.append(" ").append(arg.toString());
+    for (Object arg : args) {
+      argsMsg.append(" ").append(arg.toString());
+    }
     return count + " " + msg + argsMsg.toString();
   }
 }
