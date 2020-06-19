@@ -1,7 +1,6 @@
 package io.github.mikiepure.bestbuy;
 
 import android.os.Bundle;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public final class MainActivity extends AppCompatActivity {
@@ -21,14 +20,16 @@ public final class MainActivity extends AppCompatActivity {
             findViewById(R.id.textInputEditTextVolume1),
             findViewById(R.id.textInputEditTextNumber1),
             findViewById(R.id.textInputEditTextUnitPrice1),
-            findViewById(R.id.buttonClear1));
+            findViewById(R.id.buttonClear1),
+            getString(R.string.invalidTextMessage));
     this.calc2 =
         new Calculator(
             findViewById(R.id.textInputEditTextPrice2),
             findViewById(R.id.textInputEditTextVolume2),
             findViewById(R.id.textInputEditTextNumber2),
             findViewById(R.id.textInputEditTextUnitPrice2),
-            findViewById(R.id.buttonClear2));
+            findViewById(R.id.buttonClear2),
+            getString(R.string.invalidTextMessage));
   }
 
   @Override

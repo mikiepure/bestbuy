@@ -15,13 +15,14 @@ final class Calculator implements TextWatcher, View.OnClickListener {
   private final TextInputEditText textInputEditTextNumber;
   private final TextInputEditText textInputEditTextUnitPrice;
   private final Button buttonClear;
+  private final String invalidTextMessage;
 
   public Calculator(
       TextInputEditText textInputEditTextPrice,
       TextInputEditText textInputEditTextVolume,
       TextInputEditText textInputEditTextNumber,
       TextInputEditText textInputEditTextUnitPrice,
-      Button buttonClear) {
+      Button buttonClear, String invalidTextMessage) {
     this.textInputEditTextPrice = textInputEditTextPrice;
     this.textInputEditTextPrice.addTextChangedListener(this);
     this.textInputEditTextVolume = textInputEditTextVolume;
@@ -31,6 +32,7 @@ final class Calculator implements TextWatcher, View.OnClickListener {
     this.textInputEditTextUnitPrice = textInputEditTextUnitPrice;
     this.buttonClear = buttonClear;
     this.buttonClear.setOnClickListener(this);
+    this.invalidTextMessage = invalidTextMessage;
   }
 
   @Override
@@ -46,7 +48,7 @@ final class Calculator implements TextWatcher, View.OnClickListener {
     String priceStr = this.textInputEditTextPrice.getText().toString();
     String volumeStr = this.textInputEditTextVolume.getText().toString();
     String numberStr = this.textInputEditTextNumber.getText().toString();
-    this.textInputEditTextUnitPrice.setText(getUnitPriceStr(priceStr, volumeStr, numberStr));
+    this.textInputEditTextUnitPrice.setText(makeUnitPriceStr(priceStr, volumeStr, numberStr));
   }
 
   @Override
@@ -64,10 +66,41 @@ final class Calculator implements TextWatcher, View.OnClickListener {
    * @param numberStr String of number
    * @return String of unit price or empty string
    */
-  private static String getUnitPriceStr(String priceStr, String volumeStr, String numberStr) {
-    BigDecimal price = priceStr.equals("") ? BigDecimal.ZERO : new BigDecimal(priceStr);
-    BigDecimal volume = volumeStr.equals("") ? BigDecimal.ONE : new BigDecimal(volumeStr);
-    BigDecimal number = numberStr.equals("") ? BigDecimal.ONE : new BigDecimal(numberStr);
+  private String makeUnitPriceStr(String priceStr, String volumeStr, String numberStr) {
+    BigDecimal price = BigDecimal.ZERO;
+    if (!priceStr.equals("")) {
+      try {
+        price = new BigDecimal(priceStr);
+        this.textInputEditTextPrice.setError(null);
+      } catch (NumberFormatException e) {
+        this.textInputEditTextPrice.setError(this.invalidTextMessage);
+      }
+    } else {
+      this.textInputEditTextPrice.setError(null);
+    }
+    BigDecimal volume = BigDecimal.ONE;
+    if (!volumeStr.equals("")) {
+      try {
+        volume = new BigDecimal(volumeStr);
+        this.textInputEditTextVolume.setError(null);
+      } catch (NumberFormatException e) {
+        this.textInputEditTextVolume.setError(this.invalidTextMessage);
+      }
+    } else {
+      this.textInputEditTextVolume.setError(null);
+    }
+    BigDecimal number = BigDecimal.ONE;
+    if (!numberStr.equals("")) {
+      try {
+        number = new BigDecimal(numberStr);
+        this.textInputEditTextNumber.setError(null);
+      } catch (NumberFormatException e) {
+        this.textInputEditTextNumber.setError("invalid text");
+      }
+    } else {
+      this.textInputEditTextNumber.setError(null);
+    }
+
     BigDecimal unitPrice = calcUnitPrice(price, volume, number);
     if (unitPrice != null) {
       return unitPrice.setScale(2, RoundingMode.HALF_UP).toPlainString();
