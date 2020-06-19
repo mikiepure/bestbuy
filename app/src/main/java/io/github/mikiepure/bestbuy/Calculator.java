@@ -95,7 +95,7 @@ final class Calculator implements TextWatcher, View.OnClickListener {
         number = new BigDecimal(numberStr);
         this.textInputEditTextNumber.setError(null);
       } catch (NumberFormatException e) {
-        this.textInputEditTextNumber.setError("invalid text");
+        this.textInputEditTextNumber.setError(this.invalidTextMessage);
       }
     } else {
       this.textInputEditTextNumber.setError(null);
