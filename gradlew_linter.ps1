@@ -1,5 +1,5 @@
 $env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jre"
-$env:ANDROID_SDK_ROOT = "C:\Users\Hiromitsu\AppData\Local\Android\Sdk"
+$env:ANDROID_SDK_ROOT = "$env:USERPROFILE\AppData\Local\Android\Sdk"
 
 # CheckStyle
 .\gradlew.bat checkstyle
