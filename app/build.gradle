@@ -59,26 +59,25 @@ repositories {
     mavenCentral()
 }
 
-/* for SpotBugs */
-
 sourceSets {
     main {
-        java.srcDirs = []
+        java.srcDirs = files("src/main/java")
     }
 }
 
 spotbugs {
     ignoreFailures = true
-    effort = "max"
     reportLevel = "low"
+    effort = "max"
+    toolVersion = "4.0.5"
 }
 
-tasks.withType(com.github.spotbugs.SpotBugsTask) {
+spotbugsMain {
     dependsOn "assembleDebug"
     classes = files("$project.buildDir/intermediates/javac")
-    source = fileTree("src/main/java")
+
     reports {
-        html.enabled = true
         xml.enabled = false
+        html.enabled = true
     }
 }
