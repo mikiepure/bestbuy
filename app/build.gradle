@@ -108,6 +108,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest", group:
             '**/*Lambda*.*',
             '**/*Builder.*'
     ])
+    getExecutionData().from = "${buildDir}/jacoco/testDebugUnitTest.exec"
 
     reports {
         xml.enabled = false
