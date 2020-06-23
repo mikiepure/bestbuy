@@ -16,6 +16,10 @@ public class Log {
   private static final String TAG = "BestBuy";
   private static AtomicInteger counter = new AtomicInteger();
 
+  private Log() {
+    /* do nothing */
+  }
+
   /**
    * Output error log.
    *
