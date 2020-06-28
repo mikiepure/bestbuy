@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menuItemCount">
+        <menu>
+            <group
+                android:id="@+id/selectCompareItemNum"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menuItemCount2"
+                    android:title="@string/menuItemCount2" />
+                <item
+                    android:id="@+id/menuItemCount3"
+                    android:title="@string/menuItemCount3" />
+                <item
+                    android:id="@+id/menuItemCount4"
+                    android:title="@string/menuItemCount4" />
+                <item
+                    android:id="@+id/menuItemCount5"
+                    android:title="@string/menuItemCount5" />
+            </group>
+        </menu>
+    </item>
+</menu>

@@ -6,4 +6,9 @@
     <string name="unitPrice">Unit Price</string>
     <string name="clear">Clear</string>
     <string name="invalidTextMessage">The value cannot be converted to number</string>
+    <string name="menuItemCount">Number of items</string>
+    <string name="menuItemCount2">2 items</string>
+    <string name="menuItemCount3">3 items</string>
+    <string name="menuItemCount4">4 items</string>
+    <string name="menuItemCount5">5 items</string>
 </resources>

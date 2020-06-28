@@ -6,4 +6,9 @@
     <string name="unitPrice">単価</string>
     <string name="clear">クリア</string>
     <string name="invalidTextMessage">数値に変換できない値です</string>
+    <string name="menuItemCount">商品の数</string>
+    <string name="menuItemCount2">2 個</string>
+    <string name="menuItemCount3">3 個</string>
+    <string name="menuItemCount4">4 個</string>
+    <string name="menuItemCount5">5 個</string>
 </resources>
