@@ -15,8 +15,17 @@ Android app to compare unit price.
   - Set environment variable "JAVA_HOME" to the OpenJDK
 - Android Studio 4 with plugins:
   - [CheckStyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/)
-  - [Kotlin](https://plugins.jetbrains.com/plugin/6954-kotlin)
-  - [Save Actions](https://plugins.jetbrains.com/plugin/7642-save-actions)
+  - [Kotlin](https://plugins.jetbrains.com/plugin/6954-kotlin/)
+  - [Save Actions](https://plugins.jetbrains.com/plugin/7642-save-actions/)
+  - [SpotBugs](https://plugins.jetbrains.com/plugin/14014-spotbugs/)
+
+### Settings for SpotBugs
+
+Setting to use SpotBugs on Andriod Studio.
+
+1. Select "File" > "Settings" and open Settings dialog
+2. Select "Tools" > "SpotBugs" on sidebar
+3. Uncheck "Compile affected files before analyze"
 
 ### Settings for unit test
 
