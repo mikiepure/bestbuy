@@ -22,4 +22,22 @@
             </group>
         </menu>
     </item>
+    <item android:title="@string/menuItemDecimalPlaces" >
+        <menu >
+            <group android:id="@+id/selectDecimalPlaces">
+                <item
+                    android:id="@+id/menuItemDecPlaces0"
+                    android:title="@string/menuItemDecimalPlaces0" />
+                <item
+                    android:id="@+id/menuItemDecPlaces1"
+                    android:title="@string/menuItemDecimalPlaces1" />
+                <item
+                    android:id="@+id/menuItemDecPlaces2"
+                    android:title="@string/menuItemDecimalPlaces2" />
+                <item
+                    android:id="@+id/menuItemDecPlaces3"
+                    android:title="@string/menuItemDecimalPlaces3" />
+            </group>
+        </menu>
+    </item>
 </menu>

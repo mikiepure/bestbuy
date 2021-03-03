@@ -81,6 +81,15 @@
             android:layout_height="wrap_content"
             android:text="@string/clear" />
 
+        <TextView
+            android:id="@+id/textViewBest1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/best"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -157,6 +166,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/clear" />
+
+        <TextView
+            android:id="@+id/textViewBest2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/best"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -234,6 +252,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/clear" />
+
+        <TextView
+            android:id="@+id/textViewBest3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/best"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -311,6 +338,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/clear" />
+
+        <TextView
+            android:id="@+id/textViewBest4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/best"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -388,6 +424,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/clear" />
+
+        <TextView
+            android:id="@+id/textViewBest5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/best"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
     </LinearLayout>
 
 </LinearLayout>

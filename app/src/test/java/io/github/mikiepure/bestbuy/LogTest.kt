@@ -9,31 +9,31 @@ class LogTest {
 
     @Test
     fun error() {
-        Log.error("message", "abc", 123)
+        Log.error("message", "abc", 123, null)
     }
 
     @Test
     fun warn() {
-        Log.warn("message", "abc", 123)
+        Log.warn("message", "abc", 123, null)
     }
 
     @Test
     fun info() {
-        Log.info("message", "abc", 123)
+        Log.info("message", "abc", 123, null)
     }
 
     @Test
     fun debug() {
-        Log.debug("message", "abc", 123)
+        Log.debug("message", "abc", 123, null)
     }
 
     @Test
     fun verbose() {
-        Log.verbose("message", "abc", 123)
+        Log.verbose("message", "abc", 123, null)
     }
 
     @Test
     fun trace() {
-        Log.trace("message", "abc", 123)
+        Log.trace("message", "abc", 123, null)
     }
 }

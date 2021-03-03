@@ -14,10 +14,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Log {
   private static final String TAG = "BestBuy";
-  private static AtomicInteger counter = new AtomicInteger();
+  private static final AtomicInteger counter = new AtomicInteger();
 
+  /**
+   * Constructor of the class.
+   * Creating instance of the class is denied by private access modifier.
+   */
   private Log() {
-    /* do nothing */
   }
 
   /**
@@ -30,14 +33,9 @@ public class Log {
    */
   public static void error(String msg, Object... args) {
     final StackTraceElement calledClass = Thread.currentThread().getStackTrace()[3];
-    final String logMsgWithPos =
-        getLogMsg(msg, args)
-            + " ("
-            + calledClass.getFileName()
-            + ":"
-            + calledClass.getLineNumber()
-            + ")";
-    android.util.Log.e(TAG, logMsgWithPos);
+    android.util.Log.e(TAG, getLogMsg(msg, args)
+        /* append position of method call in case of error/warning level */
+        + " (" + calledClass.getFileName() + ":" + calledClass.getLineNumber() + ")");
   }
 
   /**
@@ -50,14 +48,9 @@ public class Log {
    */
   public static void warn(String msg, Object... args) {
     final StackTraceElement calledClass = Thread.currentThread().getStackTrace()[3];
-    final String logMsgWithPos =
-        getLogMsg(msg, args)
-            + " ("
-            + calledClass.getFileName()
-            + ":"
-            + calledClass.getLineNumber()
-            + ")";
-    android.util.Log.w(TAG, logMsgWithPos);
+    android.util.Log.w(TAG, getLogMsg(msg, args)
+        /* append position of method call in case of error/warning level */
+        + " (" + calledClass.getFileName() + ":" + calledClass.getLineNumber() + ")");
   }
 
   /**
@@ -115,7 +108,11 @@ public class Log {
     final String count = String.format("%02X", counter.getAndIncrement() & 0xFF);
     StringBuilder argsMsg = new StringBuilder();
     for (Object arg : args) {
-      argsMsg.append(" ").append(arg.toString());
+      if (arg != null) {
+        argsMsg.append(" ").append(arg.toString());
+      } else {
+        argsMsg.append(" ").append("null");
+      }
     }
     return count + " " + msg + argsMsg.toString();
   }

@@ -1,7 +1,12 @@
 package io.github.mikiepure.bestbuy
 
 import android.content.Context
+import android.text.TextWatcher
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.android.material.textfield.TextInputEditText
@@ -9,47 +14,63 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import java.math.BigDecimal
 
 @RunWith(AndroidJUnit4::class)
 class CalculatorTest {
 
+    private lateinit var baseLayout: ViewGroup
     private lateinit var textInputEditTextPrice: TextInputEditText
     private lateinit var textInputEditTextVolume: TextInputEditText
     private lateinit var textInputEditTextNumber: TextInputEditText
     private lateinit var textInputEditTextUnitPrice: TextInputEditText
+    private lateinit var textViewBest: TextView
     private lateinit var buttonClear: Button
     private lateinit var calculator: Calculator
+    private lateinit var calculatorAnyTextChangedListener: TextWatcher
+    private lateinit var calculatorClearButtonClickListener: View.OnClickListener
 
     @Before
     fun setUp() {
-        val c = ApplicationProvider.getApplicationContext<Context>()
-        this.textInputEditTextPrice = TextInputEditText(c)
-        this.textInputEditTextVolume = TextInputEditText(c)
-        this.textInputEditTextNumber = TextInputEditText(c)
-        this.textInputEditTextUnitPrice = TextInputEditText(c)
-        this.buttonClear = Button(c)
-        this.calculator = Calculator(textInputEditTextPrice, textInputEditTextVolume, textInputEditTextNumber, textInputEditTextUnitPrice, buttonClear, "error message")
+        val activity = Robolectric.buildActivity(MainActivity::class.java).get()
+        baseLayout = LinearLayout(activity)
+        textInputEditTextPrice = TextInputEditText(activity)
+        textInputEditTextVolume = TextInputEditText(activity)
+        textInputEditTextNumber = TextInputEditText(activity)
+        textInputEditTextUnitPrice = TextInputEditText(activity)
+        buttonClear = Button(activity)
+        textViewBest = TextView(activity)
+        calculator = Calculator(baseLayout,
+                textInputEditTextPrice, textInputEditTextVolume, textInputEditTextNumber,
+                textInputEditTextUnitPrice, buttonClear, textViewBest,
+                "error message")
+        val anyTextChangedListenerRef = Calculator::class.java.getDeclaredField("anyTextChangedListener")
+        anyTextChangedListenerRef.isAccessible = true
+        calculatorAnyTextChangedListener = anyTextChangedListenerRef.get(calculator) as TextWatcher
+        val clearButtonClickListenerRef = Calculator::class.java.getDeclaredField("clearButtonClickListener")
+        clearButtonClickListenerRef.isAccessible = true
+        calculatorClearButtonClickListener = clearButtonClickListenerRef.get(calculator) as View.OnClickListener
     }
 
     @Test
     fun beforeTextChanged() {
-        this.calculator.beforeTextChanged("", 0, 0, 0)
+        calculatorAnyTextChangedListener.beforeTextChanged("", 0, 0, 0)
     }
 
     @Test
     fun onTextChanged() {
-        this.calculator.onTextChanged("", 0, 0, 0)
+        calculatorAnyTextChangedListener.onTextChanged("", 0, 0, 0)
     }
 
     @Test
     fun afterTextChanged() {
-        this.calculator.afterTextChanged(this.textInputEditTextUnitPrice.text)
+        calculatorAnyTextChangedListener.afterTextChanged(textInputEditTextUnitPrice.text)
     }
 
     @Test
     fun onClick() {
-        this.calculator.onClick(null);
+        calculatorClearButtonClickListener.onClick(null);
     }
 
     @Test
@@ -79,7 +100,7 @@ class CalculatorTest {
     fun calcUnitPrice() {
         val method = Calculator::class.java.getDeclaredMethod(
                 "calcUnitPrice",
-                BigDecimal::class.java, BigDecimal::class.java, BigDecimal::class.java
+                BigDecimal::class.java, BigDecimal::class.java, BigDecimal::class.java, Int::class.java
         )
         method.isAccessible = true
 
@@ -89,13 +110,14 @@ class CalculatorTest {
         val val25 = BigDecimal.valueOf(25)
         val val50 = BigDecimal.valueOf(50)
         val val100 = BigDecimal.valueOf(100)
+        val scale = 2
 
-        Assert.assertEquals(method.invoke(null, val100, val1, val1), val100.setScale(2))
-        Assert.assertEquals(method.invoke(null, val100, val2, val1), val50.setScale(2))
-        Assert.assertEquals(method.invoke(null, val100, val1, val2), val50.setScale(2))
-        Assert.assertEquals(method.invoke(null, val100, val2, val2), val25.setScale(2))
-        Assert.assertEquals(method.invoke(null, val0, val1, val1), null)
-        Assert.assertEquals(method.invoke(null, val100, val0, val1), null)
-        Assert.assertEquals(method.invoke(null, val100, val1, val0), null)
+        Assert.assertEquals(method.invoke(null, val100, val1, val1, scale), val100.setScale(scale))
+        Assert.assertEquals(method.invoke(null, val100, val2, val1, scale), val50.setScale(scale))
+        Assert.assertEquals(method.invoke(null, val100, val1, val2, scale), val50.setScale(scale))
+        Assert.assertEquals(method.invoke(null, val100, val2, val2, scale), val25.setScale(scale))
+        Assert.assertEquals(method.invoke(null, val0, val1, val1, scale), null)
+        Assert.assertEquals(method.invoke(null, val100, val0, val1, scale), null)
+        Assert.assertEquals(method.invoke(null, val100, val1, val0, scale), null)
     }
 }

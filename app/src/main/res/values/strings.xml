@@ -11,4 +11,10 @@
     <string name="menuItemCount3">3 items</string>
     <string name="menuItemCount4">4 items</string>
     <string name="menuItemCount5">5 items</string>
+    <string name="menuItemDecimalPlaces">Number of decimal places</string>
+    <string name="menuItemDecimalPlaces0">0</string>
+    <string name="menuItemDecimalPlaces1">1</string>
+    <string name="menuItemDecimalPlaces2">2</string>
+    <string name="menuItemDecimalPlaces3">3</string>
+    <string name="best">BEST!!</string>
 </resources>

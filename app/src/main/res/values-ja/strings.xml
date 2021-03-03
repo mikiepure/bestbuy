@@ -11,4 +11,10 @@
     <string name="menuItemCount3">3 個</string>
     <string name="menuItemCount4">4 個</string>
     <string name="menuItemCount5">5 個</string>
+    <string name="menuItemDecimalPlaces">小数点以下の桁数</string>
+    <string name="menuItemDecimalPlaces0">0</string>
+    <string name="menuItemDecimalPlaces1">1</string>
+    <string name="menuItemDecimalPlaces2">2</string>
+    <string name="menuItemDecimalPlaces3">3</string>
+    <string name="best">BEST!!</string>
 </resources>
