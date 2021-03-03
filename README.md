@@ -2,10 +2,6 @@
 
 Android app to compare unit price.
 
-## ToDo
-
-- Emphasize best one
-
 ## Development
 
 ### Requirements
