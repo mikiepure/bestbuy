@@ -111,6 +111,7 @@ public final class MainActivity extends AppCompatActivity {
     // Get best indexes of the calculator array and best value
     Set<Integer> bestIndexes = new HashSet<>();
     double bestValue = 0.0;
+    int availableIndexCount = 0;
     for (int i = 0; i < itemCount; i++) {
       final String unitPrice = calculators[i].getUnitPrice();
       if (!unitPrice.equals("")) {
@@ -126,19 +127,20 @@ public final class MainActivity extends AppCompatActivity {
           } else if (unitPriceNum == bestValue) { // add index if same value is found
             bestIndexes.add(i);
           }                                       // do nothing if worse value is found
+          availableIndexCount++;
         } catch (NumberFormatException e) {
           Log.warn("Unexpected value:", unitPrice);
         }
       }
     }
-    Log.info("bestIndexes:", Arrays.deepToString(bestIndexes.toArray()));
-    Log.info("bestValue:", bestValue);
 
-    // Emphasize calculators which has best indexes
-    if (bestIndexes.size() > 0) {
-      for (int index : bestIndexes) {
-        calculators[index].setBackground(backgroundBorder);
-        calculators[index].setBestVisibility(true);
+    if (availableIndexCount > 1) {
+      // Emphasize calculators which has best indexes
+      if (bestIndexes.size() > 0) {
+        for (int index : bestIndexes) {
+          calculators[index].setBackground(backgroundBorder);
+          calculators[index].setBestVisibility(true);
+        }
       }
     }
   };
